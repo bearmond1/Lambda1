@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9DE1135E-8DAA-4956-9AFE-1184AB6B51AF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Lambda</RootNamespace>
+    <AssemblyName>Lambda</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>labmda %281%29.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.12.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.12.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="add_Node.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add_Node.Designer.cs">
+      <DependentUpon>add_Node.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Closing_warning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Closing_warning.Designer.cs">
+      <DependentUpon>Closing_warning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="electronics.cs" />
+    <Compile Include="find_element.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="find_element.Designer.cs">
+      <DependentUpon>find_element.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Function.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Function.Designer.cs">
+      <DependentUpon>Function.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main_window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main_window.Designer.cs">
+      <DependentUpon>Main_window.cs</DependentUpon>
+    </Compile>
+    <Compile Include="data_input.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="data_input.Designer.cs">
+      <DependentUpon>data_input.cs</DependentUpon>
+    </Compile>
+    <Compile Include="conditions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="conditions.Designer.cs">
+      <DependentUpon>conditions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pick_element.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pick_element.Designer.cs">
+      <DependentUpon>pick_element.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="value.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="add_Node.resx">
+      <DependentUpon>add_Node.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Closing_warning.resx">
+      <DependentUpon>Closing_warning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="find_element.resx">
+      <DependentUpon>find_element.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Function.resx">
+      <DependentUpon>Function.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main_window.resx">
+      <DependentUpon>Main_window.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="data_input.resx">
+      <DependentUpon>data_input.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="conditions.resx">
+      <DependentUpon>conditions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pick_element.resx">
+      <DependentUpon>pick_element.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="111.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="labmda %281%29.ico" />
+    <Content Include="Library.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="template.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

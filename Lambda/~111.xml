@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BDIC Ea="" Nt="">
+  <list_C1>
+    <f amount="1-100">0.0025</f>
+    <f amount="101-1000">0.005</f>
+  </list_C1>
+</BDIC>
