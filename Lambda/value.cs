@@ -62,15 +62,17 @@ namespace Lambda
                 double x;
                 string sep = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
-                foreach (ComboBox b in boxes)
+                int h = -1;
+                foreach (XmlNode parametr in nod.ChildNodes)
                 {
+                    h++;
                     //загрузка выбираемого значения из XML
-                    if (b.Name != "")
+                    if (parametr.HasChildNodes)
                     {
-                        if (double.TryParse(nod.SelectSingleNode(".//f[@text='" + b.Text + "']").InnerText.Replace(','.ToString(), sep), out x)) parametrs.Add("",x);
+                        if (double.TryParse(parametr.SelectSingleNode(".//f[@text='" + boxes[h].Text + "']").InnerText.Replace(','.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
                         else
                         {
-                            if (double.TryParse(nod.SelectSingleNode(".//f[@text='" + b.Text + "']").InnerText.Replace('.'.ToString(), sep), out x)) parametrs.Add("", x);
+                            if (double.TryParse(nod.SelectSingleNode(".//f[@text='" + boxes[h].Text + "']").InnerText.Replace('.'.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
                             else
                             {
                                 MessageBox.Show("Неверный формат числа в XML");
@@ -81,26 +83,30 @@ namespace Lambda
                     // парсим введенное значение
                     else
                     {
-                        if (double.TryParse(b.Text.Replace(','.ToString(), sep), out x)) parametrs.Add("", x);
+                        if (double.TryParse(boxes[h].Text.Replace(','.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
                         else
                         {
-                            if (double.TryParse(b.Text.Replace('.'.ToString(), sep), out x)) parametrs.Add("", x);
+                            if (double.TryParse(boxes[h].Text.Replace('.'.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
                             else
                             {
-                                MessageBox.Show("Неверный формат числа " + b.Text);
+                                MessageBox.Show("Неверный формат числа " + boxes[h].Text);
                                 return;
                             }
                         }
                     }
-                }
-                parametrs.Add("",Convert.ToDouble(form1.Pe));
-                Electronics element = (Electronics)form1.elements.Last().Clone();
+                }                    
+                
+                parametrs.Add("Pe",Convert.ToDouble(form1.Pe));
+                //Electronics element = (Electronics)form1.elements.Last().Clone();
+                Electronics element = (Electronics)Activator.CreateInstance(form1.elements.Last().GetType());
+                element.input.Add("Количество","1");
                 element.calc(parametrs);
+                parametrs.Clear();
 
                 Lambda[i] = (string)element.parametrs["L"].Clone();
                 argument[i] = (string)box.Items[i].ToString().Clone();
 
-                element.parametrs.Clear();
+                //element.parametrs.Clear();
             }
             // исследование зависимости
             new Function(Lambda, argument);
@@ -116,8 +122,5 @@ namespace Lambda
                 if (b.Items.Count == 0 && b.Text == "5.001") b.Text = "";
             }
         }
-
-
-
     }
 }

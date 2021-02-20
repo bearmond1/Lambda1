@@ -734,7 +734,7 @@
       <f text="Постоянные проволочные мощные (RW, RWR, RE, RER) (Fixed, Wirewound, Power)">5</f>
       <f text="Терморезисторы изолированные (RTH) (Thermistor)">6</f>
       <f text="Переменные проволочные подстроечные (RT, RTR, RR) (Variable, Wirewound)">7</f>
-      <f text="Переменные проволочные полупрецизионные (Ra, RK) (Variable, Wirewound , SemiPrecision)">8</f>
+      <f text="Переменные проволочные полупрецизионные (RA, RK) (Variable, Wirewound , SemiPrecision)">8</f>
       <f text="Переменные проволочные мощные (RP) (Variable, Wirewound , Power)">9</f>
       <f text="Переменные непроволочные (RJ, RJR, RV, RQ) (Variable, NonWirewound )">10</f>
       <f text="Переменные непроволочные пленочные (RVC) (Variable, NonWirewound ,  Film and Precision)">11</f>

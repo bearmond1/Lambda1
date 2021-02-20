@@ -22,7 +22,7 @@ namespace Lambda
     {
         public List<Electronics> elements = new List<Electronics>();
 
-        public string Pe="1", T="25";
+        public string Pe="0", T="25";
         public int image_index;
         string path;
 
@@ -76,13 +76,14 @@ namespace Lambda
             new pick_element(this);
         }
         // показать элемент
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        public void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             dataGridView1.Columns.Clear();
 
             if (treeView1.SelectedNode.Tag != null)
             {
                 int index = Convert.ToInt32(treeView1.SelectedNode.Tag);
+                Electronics element = elements[index];
 
                 for (int i = 0; i < elements[index].parametrs.Count; i++)
                 {
@@ -95,17 +96,27 @@ namespace Lambda
                 List<string> input_title = new List<string>();
                 List<string> input_value = new List<string>();
 
-                foreach(KeyValuePair<string,string> pair in elements[index].parametrs)
+                title.Add("Название");
+                value.Add(element.input["Название"]);
+                title.Add("Позиционное обозначение");
+                value.Add(element.input["Позиционное обозначение"]);
+                title.Add("Количество");
+                value.Add(element.input["Количество"]);
+                title.Add("λ * n");
+                value.Add(element.LN);
+
+                foreach (KeyValuePair<string,string> pair in elements[index].parametrs)
                 {
-                    title.Add(pair.Key);
-                    value.Add(pair.Value);
+                    //title.Add(pair.Key);
+                    //value.Add(pair.Value);
                 }
                 dataGridView1.Rows.Add(title.ToArray());
                 dataGridView1.Rows.Add(value.ToArray());
 
                 dataGridView1.Rows.Add();
+                dataGridView1.Rows.Add("Коэффициенты модели");
 
-                foreach (KeyValuePair<string, string> pair in elements[index].input)
+                foreach (KeyValuePair<string, string> pair in elements[index].parametrs)
                 {
                     input_title.Add(pair.Key);
                     input_value.Add(pair.Value);
@@ -202,7 +213,8 @@ namespace Lambda
         // условия эксплуатации
         private void button1_Click(object sender, EventArgs e)
         {
-            new conditions(this);
+            var x = new conditions(this);
+            x.Show();
         }
 
         private void Main_window_Resize(object sender, EventArgs e)

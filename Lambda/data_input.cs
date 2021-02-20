@@ -363,9 +363,9 @@ namespace Lambda
                     xmlElement.AppendChild(xDoc.ImportNode(element.ToXML(),true));
                     xDoc.Save("Library.xml");
                 }
-                form1.treeView1.SelectedNode = form1.treeView1.Nodes[0];
                 form1.Show();
-                Dispose();
+            form1.treeView1_AfterSelect(new object(), new TreeViewEventArgs(form1.treeView1.SelectedNode));
+            Dispose();
             
         }
     }

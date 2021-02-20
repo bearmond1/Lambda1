@@ -84,15 +84,13 @@ namespace Lambda
             tableCellBorders2.Append(rightBorder2);
             
             tclPr.AppendChild(tableCellBorders2);
-            //tclPr.AppendChild(tableCellSpacing1);
-            //
 
             tableCellList[0].Append((OpenXmlElement)tclPr.Clone(),   new Paragraph((ParagraphProperties)pPr.Clone(), new Run(  new Text("Название")) ));
             tableCellList[1].Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(" Позиционное обозначение "))));
             tableCellList[2].Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(" Тип "))));
             tableCellList[3].Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(" Кол-во "))));
-            tableCellList[5].Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(" λ * n "))));
-            tableCellList[4].Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(" λ "))));
+            tableCellList[4].Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(" λ * n "))));
+            tableCellList[5].Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(" λ "))));
 
             TableRow tableRow1 = new TableRow();
 
@@ -114,15 +112,8 @@ namespace Lambda
                     tableRow2.Append(new TableCell((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(element.text_type)))));
 
                 tableRow2.Append(new TableCell((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(element.input["Количество"])))));
-                //tableRow2.Append(new TableCell((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(element.parametrs["L"])))));
                 tableRow2.Append(new TableCell((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(element.LN)))));
 
-                //for (int index = 1; index < element.parametrs.Count; ++index)
-                //{
-                //    TableCell tableCell = new TableCell();
-                //    tableCell.Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(element.parametrs[index].Item1 + "=" + element.parametrs[index].Item2))));
-                //    tableRow2.Append(tableCell);
-                //}
                 foreach(KeyValuePair<string,string> pair in element.parametrs)
                 {
                     TableCell tableCell = new TableCell();
@@ -186,7 +177,8 @@ namespace Lambda
             sectionProperties.Append(pageMargin);
             mainDocumentPart.Document.Body.Append(sectionProperties );
             mainDocumentPart.Document.Body.Append(new Paragraph(new Run(new Text("Температура окружающей среды, °С: "+T))));
-            mainDocumentPart.Document.Body.Append(new Paragraph(new Run(new Text("Группа аппаратуры по ГОСТ Р В 20.39.304-98 - " + conditions.get_Pe_name() ))));
+            var b = new conditions(this);
+            mainDocumentPart.Document.Body.Append(new Paragraph(new Run(new Text("Группа аппаратуры по ГОСТ Р В 20.39.304-98 - " + b.get_Pe_name() ))));
                                   
             double m = Math.Pow(10, 3 - Math.Ceiling(Math.Log10(lambda)));
             lambda = ((Math.Round(lambda * m)) / m);
@@ -224,7 +216,7 @@ namespace Lambda
                     if (xDoc.DocumentElement.Attributes["Pe"] != null)
                     {
                         T = xDoc.DocumentElement.Attributes["T"].Value;
-                        conditions.index = Convert.ToInt32(xDoc.DocumentElement.Attributes["Pe"].Value);
+                        Pe = xDoc.DocumentElement.Attributes["Pe"].Value;
                         Pe = conditions.get_Pe(Convert.ToInt32(xDoc.DocumentElement.Attributes["Pe"].Value));
                     }
 
@@ -245,7 +237,7 @@ namespace Lambda
             recalc();
             xDoc.Load("template.xml");
             xDoc.DocumentElement.Attributes["T"].Value = T;
-            xDoc.DocumentElement.Attributes["Pe"].Value = conditions.index.ToString();
+            xDoc.DocumentElement.Attributes["Pe"].Value = Pe;
             nodes(treeView1.Nodes[0], xDoc.DocumentElement);
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -434,7 +426,7 @@ namespace Lambda
             foreach (Electronics element in elements)
             {
                 element.calc_input["T"] = Convert.ToDouble(T);
-                element.calc_input["Т"] = Convert.ToDouble(T);
+                //element.calc_input["Т"] = Convert.ToDouble(T);
                 element.calc_input["Pe"] = Convert.ToDouble(Pe);
                 element.input["Температура"] = T;
                 element.parametrs.Clear();

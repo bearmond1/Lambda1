@@ -16,8 +16,10 @@ namespace Lambda
         {
             InitializeComponent();
             chart1.Series.Clear();
-            //chart1.Titles.Add("");
-            chart1.Series.Add("Интенсивность отказов");
+            chart1.Series.Add("Интенсивность отказов"); 
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            chart1.Series[0].BorderWidth = 5;
+
             for (int x=0;x<Lambda.Length; x++)
             {
                 chart1.Series[0].Points.AddXY(arguement[x],Convert.ToDouble(Lambda[x]));
