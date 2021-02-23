@@ -260,14 +260,14 @@ namespace Lambda
 
             double lambda = (C1 * Pt + C2 * Pe) * Pq / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("C1", C1.ToString());
             parametrs.Add("C2", C2.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
 
     }
@@ -307,14 +307,14 @@ namespace Lambda
 
             double lambda = (C1 * Pt + C2 * Pe) * Pq / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("C1", C1.ToString());
             parametrs.Add("C2", C2.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //3
@@ -353,14 +353,14 @@ namespace Lambda
 
             double lambda = (C1 * Pt + C2 * Pe) * Pq / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("C1", C1.ToString());
             parametrs.Add("C2", C2.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //4
@@ -399,14 +399,14 @@ namespace Lambda
 
             double lambda = (C1 * Pt + C2 * Pe) * Pq / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("C1", C1.ToString());
             parametrs.Add("C2", C2.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //5
@@ -447,15 +447,15 @@ namespace Lambda
             T = (0.1 * Math.Exp((-Ea / 8.617E-5) * ((1.0 / (T + 273)) - 1.0 / 423)));
             double lambda = (Pa * C1 * T + C2 * Pe) * Pq / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("C1", C1.ToString());
             parametrs.Add("C2", C2.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
 
     }
@@ -468,10 +468,10 @@ namespace Lambda
             double Pq = calc_input["Pq"];
             double Pe = Pe_1_17[Convert.ToInt32(calc_input["Pe"])];
             double lambda = 2.1*Pq*Pe*1E-6;
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //18
@@ -497,16 +497,15 @@ namespace Lambda
             else Ps = Math.Pow(Kel, 2.43);
             double lambda = Lb * Pt * Ps * Pc * Pq *Pe / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Ps", Ps.ToString());
             parametrs.Add("Pc", Pc.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 19
@@ -556,7 +555,7 @@ namespace Lambda
             double lambda = Lbd * Pmfg * Ppt * Pcd + Lbp * Pq * Pt * Pe + Leos;
             lambda /= 1E6;
 
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("Lbd", Lbd.ToString());
             parametrs.Add("Pcd", Pcd.ToString());
             parametrs.Add("Pt", Pt.ToString());
@@ -564,8 +563,8 @@ namespace Lambda
             parametrs.Add("Lbp", Lbp.ToString());
             parametrs.Add("Pmfg", Pmfg.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
 
     }
@@ -600,13 +599,14 @@ namespace Lambda
             }
             lambda = Lb * T * Pa * Pq * Pr *Pe / 1E6; 
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pm", Pm.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
+            this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
             round();
         }
 
@@ -633,16 +633,16 @@ namespace Lambda
 
             lambda = 0.00074 * T * Pa * Pr * Ps * Pq *Pe / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", "0,00074");
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", "0,00074");
             parametrs.Add("Pm", Pm.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pr", Pr.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
 
     }
@@ -663,14 +663,14 @@ namespace Lambda
             
             lambda = Lb * T * Pa * Pq *Pe / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
 
     }
@@ -689,13 +689,13 @@ namespace Lambda
 
             lambda = 0.0038 * T * Pq *Pe / 1E6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", "0,0038");
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", "0,0038");
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
 
     }
@@ -720,15 +720,15 @@ namespace Lambda
             
             lambda = 0.18 * T * Pr * Ps  * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", "0,18");
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", "0,18");
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pr", Pr.ToString());
             parametrs.Add("Ps", Ps.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 
@@ -742,7 +742,7 @@ namespace Lambda
             double Pb = calc_input["Pb"];
             double Kel = calc_input["Kel"];
             double T = calc_input["T"];
-            double Pt = calc_input["Pt"];
+            double Mt = calc_input["Mt"];
             double Pa = calc_input["Pa"];
             double S = calc_input["S"];
             double Pq = calc_input["Pq"];
@@ -750,13 +750,13 @@ namespace Lambda
             double Pe = Pe_25_to_30_35_37[Convert.ToInt32(calc_input["Pe"])];
 
             double Lb = 0.032 * Math.Exp(0.354 * F + 0.00558 * Pb);
-
+            double Pt = 0;
             if (Kel <= 0.4)
-                if (Pt == 1)
+                if (Mt == 1)
                     Pt = 0.1 * Math.Exp(-2903 * ((1.0 / (T + 273)) - 1.0 / 373));
                 else
                     Pt = 0.38 * Math.Exp(-5794 * ((1.0 / (T + 273)) - 1.0 / 373));
-            else if (Pt == 1)
+            else if (Mt == 1)
                 Pt = 2 * (Kel-0.35) * Math.Exp(-2903 * ((1.0 / (T + 273)) - 1.0 / 373));
             else
                 Pt = 7.55 * (Kel - 0.35) * Math.Exp(-5794 * ((1.0 / (T + 273)) - 1.0 / 373));
@@ -764,17 +764,17 @@ namespace Lambda
             if (Pa == 1) Pa = 7.6;
             if (Pa == 2) Pa = 0.06 * S + 0.4;
             
-            lambda = Lb * Pt * Pa * Pm * Pq *Pe * 1E-6;
+            lambda = Lb * Mt * Pa * Pm * Pq *Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
-            parametrs.Add("Pt", Pt.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
+            parametrs.Add("Pt", Mt.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pm", Pm.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 36
@@ -800,15 +800,15 @@ namespace Lambda
             double Pt = Math.Exp(-4485 * ((1.0 / (T + 273)) - 1.0 / 298));    
             lambda = Lb * Pt * Pa * Pm * Pq * Pe* 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pm", Pm.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 37
@@ -825,13 +825,13 @@ namespace Lambda
             double Pt = Math.Exp(-1925 * ((1.0 / (T + 273)) - 1.0 / 298));
             lambda = Lb * Pt * Pq *Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 38
@@ -853,15 +853,15 @@ namespace Lambda
             T = Math.Exp(-3082 * ((1.0 / (T + 273)) - 1.0 / 298));
             lambda = 0.0022 * T * Math.Pow(Ims, 0.4) * Ps * Pq *Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", "0,0022");
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", "0,0022");
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Ims", Ims.ToString());
             parametrs.Add("Ps", Ps.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 39
@@ -878,13 +878,13 @@ namespace Lambda
             T = Math.Exp(-2790 * ((1.0 / (T + 273)) - 1.0 / 298));
             lambda = Lb * T * Pq *Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 40
@@ -906,13 +906,13 @@ namespace Lambda
             T = Math.Exp(2790 * ((1.0 / (T + 273)) - 1.0 / 298));
             lambda = Lb * T * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 31
@@ -939,16 +939,16 @@ namespace Lambda
             Pp = 1 / (2 * (1 - Pp));
             lambda = Lb * T * Pi * Pa * Pp* Pq* Pe *1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pi", Pi.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pp", Pp.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     // 
@@ -1060,15 +1060,15 @@ namespace Lambda
             double Ps = A * Math.Exp( B * (Pf / Pm));
             lambda = Lb * T * Pp * Ps * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pp", Pp.ToString());
             parametrs.Add("Ps", Ps.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
 
@@ -1260,16 +1260,16 @@ namespace Lambda
             double Pv = Math.Pow((Kel / B), A)+1;
             lambda = Lb * T * Pc*Pv*Psr * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", T.ToString());
             parametrs.Add("Pc", Pc.ToString());
             parametrs.Add("Pv", Pv.ToString());
             parametrs.Add("Psr", Psr.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //77
@@ -1286,13 +1286,13 @@ namespace Lambda
             double Pt = Math.Exp((-0.11/8.617E-5) * ((1.0 / (T + 273)) - 1.0 / 298));
             double lambda = Lb * Pt * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //78
@@ -1312,13 +1312,13 @@ namespace Lambda
             if (Pc == 2) Pc = Math.Pow(N, 0.33);
             double lambda = Lb * Pi * Pc * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("Pi", Pi.ToString());
             parametrs.Add("Pc", Pc.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //81
@@ -1341,14 +1341,14 @@ namespace Lambda
 
             double lambda = Lb * Pt * Pk * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pk", Pk.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //79
@@ -1381,16 +1381,16 @@ namespace Lambda
 
             double lambda = Lb * Pi * Pc * Pcyc * Pf * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pi", Pi.ToString());
             parametrs.Add("Pc", Pc.ToString());
             parametrs.Add("Pcyc", Pcyc.ToString());
             parametrs.Add("Pf", Pf.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //80
@@ -1404,12 +1404,12 @@ namespace Lambda
 
             double lambda = 0.029 * Pq * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", "0,029");
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", "0,029");
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //82
@@ -1426,13 +1426,13 @@ namespace Lambda
 
             double lambda = Lb * Pu * Pa * Pe * 1E-6;
 
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pu", Pu.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
 
         }
     }
@@ -1446,15 +1446,13 @@ namespace Lambda
             double Pq = calc_input["Pq"];
             double Pe = _84[Convert.ToInt32(calc_input["Pe"])];
             double Lb = 0.013 * Math.Pow(F, 0.23);
-
             double lambda = Lb * Pq * Pe * 1E-6;
-
-            parametrs.Add("L", lambda.ToString());
-            parametrs.Add("Lb", Lb.ToString());
+            parametrs.Add("λ", lambda.ToString());
+            parametrs.Add("λб", Lb.ToString());
             parametrs.Add("Pq", Pq.ToString());
             parametrs.Add("Pe", Pe.ToString());
-            round();
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
     //86
@@ -1465,11 +1463,10 @@ namespace Lambda
         { 
             double Pe = _86[Convert.ToInt32(calc_input["Pe"])];
             double lambda = 0.01 * Pe;
-            parametrs.Add("L", lambda.ToString());
+            parametrs.Add("λ", lambda.ToString());
             parametrs.Add("Pe", calc_input["Pe"].ToString());
-            round();
-
             this.LN = (lambda * Convert.ToDouble(this.input["Количество"])).ToString();
+            round();
         }
     }
 }

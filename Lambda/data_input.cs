@@ -266,107 +266,110 @@ namespace Lambda
         // Зафиксировать введенные значения и добавить объект
         private void button1_Click(object sender, EventArgs e)
         {
-                int h = -1;
-                var nod = xDoc.SelectSingleNode(cur_Type);
-                foreach (XmlNode parametr in nod.ChildNodes)
-                {
-                    h++;
-                    double x;
-                    string sep = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            int h = -1;
+            var nod = xDoc.SelectSingleNode(cur_Type);
+            foreach (XmlNode parametr in nod.ChildNodes)
+            {
+                h++;
+                double x;
+                string sep = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
-                    //загрузка выбираемого значения из XML
-                    if (parametr.HasChildNodes)
-                    {
-                        if (double.TryParse(parametr.SelectSingleNode(".//f[@text='" + boxes[h].Text + "']").InnerText.Replace(','.ToString(), sep), out x)) parametrs.Add(parametr.Name,x);
-                        else
-                        {
-                            if (double.TryParse(parametr.SelectSingleNode(".//f[@text='" + boxes[h].Text + "']").InnerText.Replace('.'.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
-                            else
-                            {
-                                MessageBox.Show("Неверный формат числа в XML");
-                                return;
-                            }
-                        }
-                    }
-                    // парсим введенное значение
+                //загрузка выбираемого значения из XML
+                if (parametr.HasChildNodes)
+                {
+                    if (double.TryParse(parametr.SelectSingleNode(".//f[@text='" + boxes[h].Text + "']").InnerText.Replace(','.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
                     else
                     {
-                        if (double.TryParse(boxes[h].Text.Replace(','.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
+                        if (double.TryParse(parametr.SelectSingleNode(".//f[@text='" + boxes[h].Text + "']").InnerText.Replace('.'.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
                         else
                         {
-                            if (double.TryParse(boxes[h].Text.Replace('.'.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
-                            else
-                            {
-                                MessageBox.Show("Неверный формат числа "+ boxes[h].Text);
-                                return;
-                            }
+                            MessageBox.Show("Неверный формат числа в XML");
+                            return;
                         }
                     }
-
-                    //Пересчет с приставкой СИ
-                    if (boxes[h].Tag.ToString() == "prefix")
+                }
+                // парсим введенное значение
+                else
+                {
+                    if (double.TryParse(boxes[h].Text.Replace(','.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
+                    else
                     {
-                        parametrs[parametrs.Last().Key] = parametrs.Last().Value * Prefix(Metric_prefix.SelectedIndex) / Prefix(Metric_prefix_initial);
+                        if (double.TryParse(boxes[h].Text.Replace('.'.ToString(), sep), out x)) parametrs.Add(parametr.Name, x);
+                        else
+                        {
+                            MessageBox.Show("Неверный формат числа " + boxes[h].Text);
+                            return;
+                        }
                     }
-
                 }
-                parametrs.Add("Pe",Convert.ToDouble(form1.Pe));
 
-                // Записать входные данные для элемента
-                int i = 0;
-                while (i < boxes.Count)
+                //Пересчет с приставкой СИ
+                if (boxes[h].Tag.ToString() == "prefix")
                 {
-                    // Добавление приставки СИ
-                    if (boxes[i].Tag.ToString() == "prefix" && Metric_prefix.SelectedIndex != 4) boxes[i].Text =  boxes[i].Text+Metric_prefix.Text.Substring(Metric_prefix.Text.IndexOf('0')+1);
-                    input.Add(labels[i].Text, boxes[i].Text);
-                    i++;
+                    parametrs[parametrs.Last().Key] = parametrs.Last().Value * Prefix(Metric_prefix.SelectedIndex) / Prefix(Metric_prefix_initial);
                 }
-                input.Add("Количество", amount.Text);
-                input.Add("Название", name.Text);
-                input.Add("Позиционное обозначение", position.Text);
 
-                // элемент дерева для новых элементов
-                TreeNode node = new TreeNode(name.Text);
+            }
+            parametrs.Add("Pe", Convert.ToDouble(form1.Pe));
 
-                int index = 0;
+            // Записать входные данные для элемента
+            int i = 0;
+            while (i < boxes.Count)
+            {
+                // Добавление приставки СИ
+                if (boxes[i].Tag.ToString() == "prefix" && Metric_prefix.SelectedIndex != 4) boxes[i].Text = boxes[i].Text + Metric_prefix.Text.Substring(Metric_prefix.Text.IndexOf('0') + 1);
+                input.Add(labels[i].Text, boxes[i].Text);
+                i++;
+            }
+            input.Add("Количество", amount.Text);
+            input.Add("Название", name.Text);
+            input.Add("Позиционное обозначение", position.Text);
 
-                // для новых элементов
-                if (form1.treeView1.SelectedNode.Tag == null )
-                {
-                    index = form1.elements.Count - 1;
-                    node.Tag = index;
-                    node.ImageIndex = 1;
-                    node.SelectedImageIndex = 1;
-                    form1.treeView1.SelectedNode.Nodes.Add(node);
-                }
-                // для редактирования
-                else 
-                {
-                    index = (int)form1.treeView1.SelectedNode.Tag;
-                    form1.elements[index].input.Clear();
-                    form1.elements[index].parametrs.Clear();
-                    form1.elements[index] = (Electronics)Activator.CreateInstance(form1.elements[index].GetType());
-                }
-                form1.elements[index].type = cur_Type;
-                form1.elements[index].text_type = Text;
-                form1.elements[index].calc_input = parametrs;
-                form1.elements[index].input = input;
-                form1.elements[index].calc(parametrs);
+            // элемент дерева для новых элементов
+            TreeNode node = new TreeNode(name.Text);
 
-                Electronics element = form1.elements[form1.elements.Count - 1];
-                // добавление в библиотеку элементов
-                if (checkBox1.Checked)
-                {
-                    XmlDocument xDoc = new XmlDocument();
-                    xDoc.Load("Library.xml");
-                    XmlElement xmlElement = xDoc.DocumentElement;
-                    xmlElement.AppendChild(xDoc.ImportNode(element.ToXML(),true));
-                    xDoc.Save("Library.xml");
-                }
-                form1.Show();
-            form1.treeView1_AfterSelect(new object(), new TreeViewEventArgs(form1.treeView1.SelectedNode));
+            int index = 0;
+            int node_index = 0;
+            // для новых элементов
+            if (form1.treeView1.SelectedNode.Tag == null)
+            {
+                index = form1.elements.Count - 1;
+                node.Tag = index;
+                node.ImageIndex = 1;
+                node.SelectedImageIndex = 1;
+                form1.treeView1.SelectedNode.Nodes.Add(node);
+            }
+            // для редактирования
+            else
+            {
+                index = (int)form1.treeView1.SelectedNode.Tag;
+                node_index = form1.treeView1.SelectedNode.Index;
+                form1.elements[index].input.Clear();
+                form1.elements[index].parametrs.Clear();
+            }
+            Electronics element = new Electronics();
+            element = form1.elements[index];
+            element.type = cur_Type;
+            element.text_type = Text;
+            element.calc_input = parametrs;
+            element.input = input;
+            element.calc(parametrs);
+
+            // добавление в библиотеку элементов
+            if (checkBox1.Checked)
+            {
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.Load("Library.xml");
+                XmlElement xmlElement = xDoc.DocumentElement;
+                xmlElement.AppendChild(xDoc.ImportNode(element.ToXML(), true));
+                xDoc.Save("Library.xml");
+            }
+            form1.Show();
+            if (form1.treeView1.SelectedNode.Tag == null)
+                form1.treeView1.SelectedNode = form1.treeView1.SelectedNode.Nodes[form1.treeView1.SelectedNode.Nodes.Count - 1];
+            else
+                form1.treeView1_AfterSelect(new object(), new TreeViewEventArgs(form1.treeView1.SelectedNode));
             Dispose();
-            
         }
     }
 }

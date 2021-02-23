@@ -117,7 +117,8 @@ namespace Lambda
                 foreach(KeyValuePair<string,string> pair in element.parametrs)
                 {
                     TableCell tableCell = new TableCell();
-                    tableCell.Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(pair.Key + "=" + pair.Value))));
+                    if (pair.Key == "λ") tableCell.Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(pair.Value))));
+                    else tableCell.Append((OpenXmlElement)tclPr.Clone(), new Paragraph((ParagraphProperties)pPr.Clone(), new Run(new Text(pair.Key + "=" + pair.Value))));
                     tableRow2.Append(tableCell);
                 }
                 for (int i= element.parametrs.Count; i < max; i++)

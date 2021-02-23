@@ -105,11 +105,6 @@ namespace Lambda
                 title.Add("λ * n");
                 value.Add(element.LN);
 
-                foreach (KeyValuePair<string,string> pair in elements[index].parametrs)
-                {
-                    //title.Add(pair.Key);
-                    //value.Add(pair.Value);
-                }
                 dataGridView1.Rows.Add(title.ToArray());
                 dataGridView1.Rows.Add(value.ToArray());
 

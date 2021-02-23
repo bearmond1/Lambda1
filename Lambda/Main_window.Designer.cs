@@ -64,7 +64,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(310, 64);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(900, 511);
+            this.dataGridView1.Size = new System.Drawing.Size(630, 511);
             this.dataGridView1.TabIndex = 4;
             // 
             // menuStrip1
@@ -74,7 +74,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1220, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(950, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -246,7 +246,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1220, 587);
+            this.ClientSize = new System.Drawing.Size(950, 587);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.edit);
             this.Controls.Add(this.add_new_element);
