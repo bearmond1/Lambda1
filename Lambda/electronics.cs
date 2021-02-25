@@ -753,22 +753,22 @@ namespace Lambda
             double Pt = 0;
             if (Kel <= 0.4)
                 if (Mt == 1)
-                    Pt = 0.1 * Math.Exp(-2903 * ((1.0 / (T + 273)) - 1.0 / 373));
+                    Pt = 0.1 * Math.Exp(-2903 * ((1.0 / (T + 273.0)) - 1.0 / 373.0));
                 else
-                    Pt = 0.38 * Math.Exp(-5794 * ((1.0 / (T + 273)) - 1.0 / 373));
+                    Pt = 0.38 * Math.Exp(-5794 * ((1.0 / (T + 273.0)) - 1.0 / 373.0));
             else if (Mt == 1)
-                Pt = 2 * (Kel-0.35) * Math.Exp(-2903 * ((1.0 / (T + 273)) - 1.0 / 373));
+                Pt = 2 * (Kel-0.35) * Math.Exp(-2903 * ((1.0 / (T + 273.0)) - 1.0 / 373.0));
             else
-                Pt = 7.55 * (Kel - 0.35) * Math.Exp(-5794 * ((1.0 / (T + 273)) - 1.0 / 373));
+                Pt = 7.55 * (Kel - 0.35) * Math.Exp(-5794 * ((1.0 / (T + 273.0)) - 1.0 / 373.0));
 
             if (Pa == 1) Pa = 7.6;
             if (Pa == 2) Pa = 0.06 * S + 0.4;
             
-            lambda = Lb * Mt * Pa * Pm * Pq *Pe * 1E-6;
+            lambda = Lb * Pt * Pa * Pm * Pq *Pe * 1E-6;
 
             parametrs.Add("λ", lambda.ToString());
             parametrs.Add("λб", Lb.ToString());
-            parametrs.Add("Pt", Mt.ToString());
+            parametrs.Add("Pt", Pt.ToString());
             parametrs.Add("Pa", Pa.ToString());
             parametrs.Add("Pm", Pm.ToString());
             parametrs.Add("Pq", Pq.ToString());

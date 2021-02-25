@@ -103,7 +103,7 @@ namespace Lambda
                 element.calc(parametrs);
                 parametrs.Clear();
 
-                Lambda[i] = (string)element.parametrs["L"].Clone();
+                Lambda[i] = (string)element.parametrs["λ"].Clone();
                 argument[i] = (string)box.Items[i].ToString().Clone();
 
                 //element.parametrs.Clear();
